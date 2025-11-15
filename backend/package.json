@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build-client": "cd ../designmint && npm install && ng build --configuration production --output-path=../backend/public"
+    "build-client": "cd ../designmint && npm install && npm run build -- --configuration production --output-path=../backend/public"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
