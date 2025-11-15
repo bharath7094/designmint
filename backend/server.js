@@ -1,77 +1,83 @@
-// backend/server.js (safe, production-ready - copy & paste)
+// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs');
 
-require('dotenv').config(); // optional: reads .env in development
+// load env from process.env (Render provides these)
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/Designmint';
+const PORT = parseInt(process.env.PORT || '3000', 10);
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admin-token-placeholder';
 
 const app = express();
-mongoose.set('strictQuery', false);
 
-// Use MONGO_URI from env if available, otherwise local MongoDB
-const MONGO = process.env.MONGO_URI;
-
-
-mongoose.connect(MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('✅ MongoDB connected'))
-  .catch((err) => console.error('❌ MongoDB connection error:', err));
-
+// security / helpers
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // body parser for JSON
+app.disable('x-powered-by');
 
-// Serve static frontend files from backend/public (if present)
-app.use(express.static(path.join(__dirname, 'public')));
+// connect mongoose
+mongoose.set('strictQuery', false);
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err);
+  });
 
-// MongoDB Schema / Model
+// simple schema
 const ContactModel = mongoose.model('Contact', {
   name: String,
   email: String,
   subject: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: () => new Date() }
 });
 
-// POST /contact - save contact form data
+// API: POST /contact
 app.post('/contact', async (req, res) => {
   try {
-    const newContact = new ContactModel(req.body);
-    await newContact.save();
-    res.status(201).json({ success: true, data: newContact });
+    const { name, email, subject } = req.body;
+    if (!name || !email || !subject) {
+      return res.status(400).json({ error: 'name, email and subject are required' });
+    }
+    const doc = new ContactModel({ name, email, subject });
+    await doc.save();
+    return res.status(201).json({ ok: true, id: doc._id });
   } catch (err) {
-    console.error('Save error:', err);
-    res.status(500).json({ success: false, error: 'Failed to save' });
+    console.error('Error saving contact:', err);
+    return res.status(500).json({ error: 'Failed to save' });
   }
 });
 
-// Optional admin route (returns JSON list of contacts).
-// Protected by x-admin-token header matching ADMIN_TOKEN env var (set in .env when needed).
+// Protected admin endpoint to list contacts
 app.get('/admin/contacts', async (req, res) => {
-  const token = req.header('x-admin-token');
-  if (!process.env.ADMIN_TOKEN || token !== process.env.ADMIN_TOKEN) {
+  const token = req.headers['x-admin-token'];
+  if (!token || token !== ADMIN_TOKEN) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   try {
-    const items = await ContactModel.find().sort({ createdAt: -1 }).lean();
-    res.json(items);
+    const docs = await ContactModel.find().sort({ createdAt: -1 }).lean();
+    return res.json(docs);
   } catch (err) {
-    console.error('Fetch error:', err);
-    res.status(500).json({ error: 'Failed to fetch' });
+    console.error('Admin fetch error:', err);
+    return res.status(500).json({ error: 'Failed to fetch' });
   }
 });
 
-// SAFER SPA fallback middleware:
-// If public/index.html exists, serve it for any request not handled earlier.
-// This avoids passing a pattern string to Express route parser and prevents
-// the path-to-regexp startup crash.
-app.use((req, res, next) => {
-  const indexPath = path.join(__dirname, 'public', 'index.html');
-  if (fs.existsSync(indexPath)) {
-    return res.sendFile(indexPath);
+// Serve static Angular build from /public
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath, { maxAge: '1d' }));
+
+// SPA fallback — serve index.html for all other GET requests
+app.get('*', (req, res) => {
+  // if request is for api route, skip (already handled above)
+  if (req.path.startsWith('/api') || req.path.startsWith('/admin') || req.path === '/contact') {
+    return res.status(404).json({ error: 'Not found' });
   }
-  next();
+  return res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// start
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
