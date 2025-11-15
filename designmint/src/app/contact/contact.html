@@ -1,0 +1,135 @@
+<div class="container p-4" style="background-color: rgba(255, 255, 255, 0.459)">
+  <div class="row g-4">
+    <div
+      class="col-12 col-md-5 my-details mb-3 border-end border-2 border-secondary border-dark"
+    >
+      <div
+        class="card text-white shadow-lg rounded-4 p-4 h-100"
+        style="background: linear-gradient(to left, #6e1154, #b13755)"
+      >
+        <div class="card-body">
+          <h4 class="fw-light">Contact Me</h4>
+          <hr />
+          <h1 class="my-d-h1 mb-4">
+            Let's talk about what we can Make, Build, Scale, Together!!!
+          </h1>
+
+          <!-- Phone -->
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-primary text-white"
+              ><i class="fa-solid fa-phone-volume"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              value="+91 7871867295"
+              readonly
+            />
+          </div>
+          <br />
+          <!-- Email -->
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-success text-white"
+              ><i class="fa-solid fa-envelope"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              value="avbharathwebdev@gmail.com"
+              readonly
+            />
+          </div>
+          <br />
+
+          <!-- LinkedIn -->
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-info text-white"
+              ><i class="fa-brands fa-linkedin"></i
+            ></span>
+            <a
+              href="https://www.linkedin.com/in/av-bharath/"
+              target="_blank"
+              class="form-control text-decoration-none"
+              style="color: black"
+            >
+              avbharath
+            </a>
+          </div>
+          <br />
+
+          <div class="input-group">
+            <span class="input-group-text" style="background-color: #ec4899">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+
+            <input
+              type="text"
+              value="Suchindram , Kanyakumari Dist"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col-12 col-md-7 mt-2 contact-form text-dark rounded-4 p-4 h-100"
+    >
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <h1 class="my-c-h1 mt-3">Catch Me Online ❤️</h1>
+
+        <!--Name Field-->
+
+        <label class="form-label">Name</label>
+
+        <input type="text" formControlName="name" class="form-control if" />
+
+        <div style="min-height: 20px">
+          @if (contactForm.get('name')?.invalid &&
+          contactForm.get('name')?.touched){
+          <small class="text-danger">*Required</small>
+          }
+        </div>
+
+        <br />
+
+        <label for="" class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email" />
+        <div style="min-height: 20px">
+          @if(contactForm.get('email')?.invalid &&
+          contactForm.get('email')?.touched){
+          <small class="text-danger">*Required</small>
+          }
+        </div>
+
+        <br />
+
+        <label class="form-label">Subject</label>
+        <textarea
+          type="text"
+          formControlName="subject"
+          class="form-control"
+          style="resize: none"
+        ></textarea>
+
+        <div style="min-height: 20px">
+          @if (contactForm.get('subject')?.invalid &&
+          contactForm.get('subject')?.touched){
+          <small style="color: red" class="req">*Required</small>
+          }
+        </div>
+        <br />
+
+        <div class="d-flex justify-content-center mt-5">
+          <button
+            type="submit"
+            [disabled]="contactForm.invalid"
+            class="btn btn-primary"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

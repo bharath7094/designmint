@@ -1,0 +1,41 @@
+
+
+.container{
+    max-width: 1100px;
+}
+
+
+
+.my-d-h1{
+color: white;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  
+}
+.my-d-h2{
+    color: white;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  
+}
+.my-d-s{
+    color: white;
+    font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  
+}
+
+
+.my-c-h1{
+    color: rgb(0, 0, 0);
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+
+
+

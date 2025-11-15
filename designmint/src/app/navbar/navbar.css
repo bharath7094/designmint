@@ -1,0 +1,40 @@
+/* navbar start */
+.navbar {
+    background-color: #060228;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500; /* makes links slightly bold */
+    letter-spacing: 1px; /* optional, adds style */
+
+}
+.navbar-brand{
+    color: rgb(255, 255, 255);
+     
+    
+}
+.nav-link{
+    color: aliceblue;
+    font-family: "Montserrat", sans-serif;
+}
+  
+.nav-link:hover{
+    color: deeppink;
+}
+.navbar-toggler{
+    color: white;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus{
+    color: rgb(181, 6, 6);
+    transition: color 0.3s ease-in-out;
+}
+
+
+
+
+/*navbar complete*/
+
+

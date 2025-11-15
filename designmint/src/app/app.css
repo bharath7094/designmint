@@ -1,0 +1,118 @@
+/* reset body/html so there is no white gap */
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* prevents scrollbars when blurred circles move outside viewport */
+}
+
+/* make background cover the viewport exactly */
+.background {
+  background-color: #060228;
+  position: fixed;
+  inset: 0;          /* top:0; right:0; bottom:0; left:0; */
+  z-index: -1;
+  width: 100vw;      /* ensure full viewport width */
+  height: 100vh;     /* ensure full viewport height */
+}
+
+.circle1{
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    background-color: #871ada ;
+    opacity: 0.6;
+    border-radius: 50%;
+    filter: blur(85px);
+    top: 0;
+    left: 0;
+    animation: moveCircle1 6s infinite alternate linear;
+}
+.circle2{
+    height: 250px;
+    width: 250px;
+    background-color:#0dd0ba ; ;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    filter: blur(85px);
+    opacity: 0.6;
+    animation: moveCircle2 6s infinite alternate linear;
+}
+.circle3{
+    height: 250px;
+    width: 250px;
+    background-color:#0c6edd ;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    filter: blur(85px);
+    opacity: 0.6;
+    animation: moveCircle3 5s infinite alternate linear ;
+}
+.circle4{
+    height: 250px;
+    width: 250px;
+    background-color:#0c34d4;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    filter: blur(85px);
+    opacity: 0.6;
+    animation: moveCircle4 5s infinite alternate linear;
+}
+
+
+
+
+
+
+
+
+
+
+/* for anumation*/
+
+@keyframes moveCircle1 {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(400px);
+    }
+}
+
+@keyframes moveCircle2 {
+    0%{
+        transform: translateX(-400px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveCircle3 {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(400px);
+    }
+}
+@keyframes moveCircle4 {
+    0%{
+        transform: translateX(-400px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+
+
+
+/* animation complete */

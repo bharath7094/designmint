@@ -1,0 +1,68 @@
+
+
+
+
+
+.fsd {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  color: white;
+  word-spacing: 3px;
+}
+
+.edu {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 22px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.abt {
+  font-family: 'Montserrat', sans-serif;
+    font-weight: 500; /* makes links slightly bold */
+    letter-spacing: 1px; /* optional, adds style */
+  font-size: 15px;
+  color: white;
+  margin-top: 50px;
+}
+
+.text{
+    border-right: 3px solid antiquewhite;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 27ch;
+    animation: typing 5s steps(27) infinite alternate, bling 0.5s step-end infinite alternate;
+    
+   
+}
+
+
+/*main section complete*/
+
+
+/*Animation start here*/
+
+
+@keyframes typing {
+    from{
+        width: 0;
+    }
+    
+}
+@keyframes bling {
+    50%{
+        border-color: black;
+    }
+    
+}
+
+
+
+
+
+

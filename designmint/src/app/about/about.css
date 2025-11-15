@@ -1,0 +1,138 @@
+/* Google Fonts (single import) */
+
+/* Section base */
+.about { margin-top: 40px; }
+
+/* Gradient heading */
+.heading {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  background-image: linear-gradient(to left, #6e1154, #b13755);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  
+}
+
+.idea {
+  text-align: center;
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: #fff;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 2.5px;
+  word-spacing: 3px;
+}
+
+/* Text block */
+.hlo {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  background: linear-gradient(to left, #6e1154, #b13755);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin: 0;
+  letter-spacing: 2px;
+  word-spacing: 3px;
+}
+
+.myna {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.paraabt {
+  margin-top: 16px;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  word-spacing: 2px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+    font-weight: 500; /* makes links slightly bold */
+    letter-spacing: 1px; /* optional, adds style */
+  font-size: 15px;
+  text-align: justify;
+}
+
+/* Photo */
+.bp1 {
+  width: clamp(180px, 40vw, 260px);
+  height: clamp(180px, 40vw, 260px);
+  object-fit: cover;
+}
+
+/* Buttons */
+.btn-brand {
+  background-color: rgb(41, 6, 101);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-brand:hover {
+  transform: scale(1.04);
+  background-color: rgb(60, 10, 140);
+}
+
+.btn-outline-brand {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgb(41, 6, 101);
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline-brand:hover {
+  transform: scale(1.04);
+  background-color: rgb(41, 6, 101);
+  color: #fff;
+}
+
+.stat-card {
+  min-width: 250px;   /* balanced width */
+  margin: 0 auto;     
+  min-height: 140px;
+  background-color: rgba(48, 5, 88, 0.68);
+  color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+  background-color: rgb(131, 1, 253);
+}
+
+/* Extra small screen tweak */
+@media (max-width: 576px) {
+  .stat-card {
+    max-width: 200px;   /* avoid full width in mobile */
+    height: auto;
+    padding: 15px;
+  }
+}
+
+
+/* Optional small tweaks on very small screens */
+@media (max-width: 576px) {
+  .idea { padding: 0 8px; }
+}
